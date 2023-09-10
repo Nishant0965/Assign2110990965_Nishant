@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notepad</title>
+    <style>
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+
+#notepad {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#save-button {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+#clear-button {
+    background-color: #f44336; 
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Notepad</h1>
+    <textarea id="notepad" rows="10" cols="30"></textarea>
+    <br>
+    <button id="save-button">Save</button>
+    <button id="clear-button">Clear</button>
+
+    <script>
+        
+        const notepad = document.getElementById('notepad');
+        const saveButton = document.getElementById('save-button');
+        const clearButton = document.getElementById('clear-button');
+
+        
+        const savedText = localStorage.getItem('notepadText');
+        if (savedText) {
+            notepad.value = savedText;
+        }
+
+        
+        saveButton.addEventListener('click', () => {
+            const textToSave = notepad.value;
+            localStorage.setItem('notepadText', textToSave);
+            alert('Text saved successfully!');
+        });
+
+        
+        clearButton.addEventListener('click', () => {
+            notepad.value = '';
+            localStorage.removeItem('notepadText');
+            alert('Text cleared successfully!');
+        });
+    </script>
+</body>
+</html>
